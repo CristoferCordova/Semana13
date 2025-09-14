@@ -17,7 +17,7 @@ public class Semana13Productos {
 
     public static void mostrarMenu(){
         System.out.println("1. Agregar producto\n2. Pagar\n3. Salir\"");
-         System.out.print("Seleccione una opcion: ");
+        System.out.print("Seleccione una opcion: ");
     }
     
   
@@ -80,8 +80,37 @@ public class Semana13Productos {
     
     
     public static void main(String[] args) {
+        List<Double> carrito = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        int option;
+        do {
+        mostrarMenu();
+        option = leerOpcion(sc);
         
-         
+        switch (option) {
+            case (1):
+                System.out.print("ingresa un producto: ");
+                double precio = sc.nextDouble();
+                agregarProducto(carrito, precio);
+                break;
+            case (2):
+                if (!carrito.isEmpty()) {
+                        pagar(carrito, sc);
+                        carrito.clear();
+                    } else {
+                        System.out.println("El carrito esta vacio. Agregue productos primero.");
+                    }
+                    break;
+           case (3):
+                System.out.println("Gracias por tu compra");
+                break;
+           default:
+                System.out.println("Opcion invalida. Intente nuevamente.");
+            }
+        } while (option != 3);
+        
+        sc.close();
+    
        
     }
            
